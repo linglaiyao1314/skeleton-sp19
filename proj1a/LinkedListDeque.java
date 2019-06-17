@@ -1,30 +1,15 @@
+import java.util.LinkedList;
+
 public class LinkedListDeque<T>{
     public class Node{
         public T elem;
         public Node next;
         public Node prev;
 
-        public Node(){
-            this.next = null;
-            this.prev = null;
-        }
-
-        public Node(T e){
-            this.elem = e;
-            this.next = null;
-            this.prev = null;
-        }
-
-        public Node(T e, Node n){
-            this.elem = e;
-            this.next = n;
-            this.prev = null;
-        }
-
-        public Node(T e, Node n, Node p){
-            this.elem = e;
-            this.next = n;
-            this.prev = p;
+        public Node(T elem, Node next, Node prev){
+            this.elem = elem;
+            this.next = next;
+            this.prev = prev;
         }
     }
 
@@ -34,8 +19,8 @@ public class LinkedListDeque<T>{
     private int size;
 
     public LinkedListDeque(){
-        sentinel = new Node();
-        last = new Node();
+        sentinel = new Node(null, null, null);
+        last = new Node(null, null, null);
         size = 0;
     }
 
@@ -126,6 +111,14 @@ public class LinkedListDeque<T>{
 
     public static void main(String[] args){
         LinkedListDeque<Integer> intList = new LinkedListDeque<>();
+        LinkedList<String> strList = new LinkedList<>();
+
+        strList.addFirst("123");
+        strList.addFirst("456");
+        strList.addFirst("789");
+        System.out.println(strList.size());
+
+
         intList.addFirst(10);
         intList.addFirst(11);
         intList.addLast(20);
