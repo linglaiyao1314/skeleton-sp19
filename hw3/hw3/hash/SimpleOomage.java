@@ -1,5 +1,7 @@
 package hw3.hash;
 import java.awt.Color;
+import java.util.HashSet;
+
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdDraw;
 
@@ -10,12 +12,16 @@ public class SimpleOomage implements Oomage {
     protected int blue;
 
     private static final double WIDTH = 0.01;
-    private static final boolean USE_PERFECT_HASH = false;
+    private static final boolean USE_PERFECT_HASH = true;
 
     @Override
     public boolean equals(Object o) {
         // TODO: Write this method.
-        return false;
+        if(o == null || o.getClass() != this.getClass()){
+            return false;
+        }
+        SimpleOomage other = (SimpleOomage) o;
+        return this.red == other.red && this.green == other.green && this.blue == other.blue;
     }
 
     /* Uncomment this method after you've written
@@ -30,6 +36,19 @@ public class SimpleOomage implements Oomage {
             return 0;
         }
     }*/
+    @Override
+    public int hashCode() {
+        if (!USE_PERFECT_HASH) {
+            return red + green + blue;
+        } else {
+            // TODO: Write a perfect hash function for Simple Oomages.
+            return String.join(",", new String[]{
+                "red:" + red,
+                "green:" + green,
+                "blue:" + blue
+            }).hashCode();
+        }
+    }
 
     public SimpleOomage(int r, int g, int b) {
         if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255) {
@@ -57,11 +76,20 @@ public class SimpleOomage implements Oomage {
     }
 
     public static void main(String[] args) {
-        System.out.println("Drawing 4 random simple Oomages.");
-        randomSimpleOomage().draw(0.25, 0.25, 1);
-        randomSimpleOomage().draw(0.75, 0.75, 1);
-        randomSimpleOomage().draw(0.25, 0.75, 1);
-        randomSimpleOomage().draw(0.75, 0.25, 1);
+//        System.out.println("Drawing 4 random simple Oomages.");
+//        randomSimpleOomage().draw(0.25, 0.25, 1);
+//        randomSimpleOomage().draw(0.75, 0.75, 1);
+//        randomSimpleOomage().draw(0.25, 0.75, 1);
+//        randomSimpleOomage().draw(0.75, 0.25, 1);
+        SimpleOomage ooA = new SimpleOomage(5, 10, 20);
+        SimpleOomage ooA2 = new SimpleOomage(5, 10, 20);
+
+        System.out.println(ooA.equals(ooA2));
+
+        HashSet<SimpleOomage> hashSet = new HashSet<SimpleOomage>();
+        hashSet.add(ooA);
+        System.out.println(hashSet.contains(ooA2));
+        System.out.println(ooA.hashCode() + ":" + ooA2.hashCode());
     }
 
     public String toString() {

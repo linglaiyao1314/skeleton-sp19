@@ -26,7 +26,6 @@ public class TestJankyOomage {
             x.val = StdRandom.uniform(0, 2);
             return x;
         }
-
     }
 
     /** After you've written haveNiceHashCodeSpread,
