@@ -19,7 +19,7 @@ public class DebugExercise3 {
     }
 
     public static void main(String[] args) {
-        In in = new In("foods.csv");
+        In in = new In("C:\\javaWorkplace\\cs61b\\skeleton-sp19\\lab2\\DebugPractice\\foods.csv");
         System.out.println(countTurnips(in));
     }
 }
