@@ -14,6 +14,9 @@ public class UnionFindTest {
     public void testList() {
         UnionFind uf = new UnionFind(15);
         uf.union(1, 2);
+        uf.union(3, 4);
+        uf.union(6, 5);
+        uf.union(4, 2);
 
 
     }
